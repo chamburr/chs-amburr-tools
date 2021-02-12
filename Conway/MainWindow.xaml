@@ -1,0 +1,46 @@
+﻿<Window x:Class="Conway_Life.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Conway_Life"
+        mc:Ignorable="d"
+        Title="Conway's Game of Life" Height="450" Width="600" FontFamily="Segoe UI Semibold" FontSize="12 pt" Icon="Resources/01-01.ico" ResizeMode="NoResize" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.70*"/>
+            <RowDefinition Height="0.30*"/>
+        </Grid.RowDefinitions>
+        <UniformGrid x:Name="gameUniformGrid" Grid.Row="0" MouseLeftButtonDown="ToggleGrid" Margin="0,0,173.333,-0.333" Grid.RowSpan="2"/>
+        <Viewbox Margin="420,0,0.333,-0.333" StretchDirection="Both" Stretch="Uniform" Grid.RowSpan="2">
+            <!--Scales Controls-->
+            <Grid x:Name="Controls" Grid.Row="1" Height="654" Width="269">
+                <Label Content="Grid" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="10 pt"/>
+                <Label x:Name="resizeGrid" Content="{Binding Path=Value}" ContentStringFormat=" {0}x{0}"  HorizontalAlignment="Left" Margin="195,140,0,0" VerticalAlignment="Top"/>
+                <Label Content="Speed" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="10 pt"/>
+                <Label x:Name="generationSpeed" Content="{Binding Path=Value}" HorizontalAlignment="Left" Margin="207,360,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="gridSlider" Minimum="10" Maximum="100" IsSnapToTickEnabled="True" ValueChanged="Grid_Slider" HorizontalAlignment="Left" Margin="62,153,0,0" VerticalAlignment="Top" Width="140"/>
+                <Slider x:Name="speedSlider" Maximum="15" IsSnapToTickEnabled="True" ValueChanged="Speed_Slider" HorizontalAlignment="Left" Margin="62,361,0,0" VerticalAlignment="Top" Width="140" Minimum="1"/>
+                <Button x:Name="BuildButton" Content="Build Grid" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="249" Height="38" Click="BuildGrid_Button" FontFamily="Segoe UI Semibold" FontSize="10 pt" Background="OrangeRed" Foreground="White"/>
+                <Button x:Name="startGame" Content="Start" HorizontalAlignment="Left" Margin="10,500,0,0" Width="249" Click="StartGame_Button" FontFamily="Segoe UI Semibold" FontSize="10 pt" Background="LimeGreen" Foreground="White" Height="38" VerticalAlignment="Top"/>
+                <Button x:Name="nextGeneration" Content="Next" HorizontalAlignment="Left" Margin="10,586,0,0" Width="249" Click="NextGeneration_Button" FontFamily="Segoe UI Semibold" FontSize="10 pt" Background="DarkOrchid" Foreground="White" Height="38" VerticalAlignment="Top"/>
+                <Button x:Name="randomizeCells" Content="Random" HorizontalAlignment="Left" Margin="10,422,0,0" Width="249" Click="RandomizeCells_Button" FontFamily="Segoe UI Semibold" FontSize="10 pt" Foreground="White" Background="RoyalBlue" Height="38" VerticalAlignment="Top"/>
+                <Button x:Name="RestartButton" Content="Clear" HorizontalAlignment="Left" Margin="10,543,0,0" Width="249" Click="BuildGrid_Button" FontFamily="Segoe UI Semibold" FontSize="10 pt" Foreground="White" Background="Red" Height="38" VerticalAlignment="Top"/>
+                <RadioButton x:Name="BlackCells" Content="Black" Margin="57,269,156,365" Checked="ColourCells" IsChecked="True"/>
+                <RadioButton x:Name="RedCells" Content="Red" HorizontalAlignment="Left" Margin="155,269,0,0" VerticalAlignment="Top" Checked="ColourCells"/>
+                <RadioButton x:Name="YellowCells" Content="Yellow" HorizontalAlignment="Left" Margin="57,294,0,0" VerticalAlignment="Top" Checked="ColourCells"/>
+                <RadioButton x:Name="GreenCells" Content="Green" HorizontalAlignment="Left" Margin="155,294,0,0" VerticalAlignment="Top" IsChecked="True" Checked="ColourCells"/>
+                <Separator HorizontalAlignment="Left" Height="30" Margin="10,465,0,0" VerticalAlignment="Top" Width="249"/>
+                <Separator HorizontalAlignment="Left" Height="30" Margin="10,387,0,0" VerticalAlignment="Top" Width="249"/>
+                <Separator HorizontalAlignment="Left" Height="30" Margin="10,319,0,0" VerticalAlignment="Top" Width="249"/>
+                <Separator HorizontalAlignment="Left" Height="30" Margin="10,234,0,0" VerticalAlignment="Top" Width="249"/>
+                <Label x:Name="PreferenceLabel" Content="Conway's Game of Life" HorizontalAlignment="Left" Margin="42,19,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="12 pt"/>
+                <Separator HorizontalAlignment="Left" Height="30" Margin="-16,1,-361,0" VerticalAlignment="Top" Width="646">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </Separator.LayoutTransform>
+                </Separator>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>
